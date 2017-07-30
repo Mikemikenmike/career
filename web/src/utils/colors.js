@@ -4,5 +4,3 @@
 
 export const p_color = 'light-blue';
 export const p_color_hex = '#03a9f4';
-
-

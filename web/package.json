@@ -11,7 +11,8 @@
   "dependencies": {
     "firebase": "^4.2.0",
     "jquery": "^2.2.4",
-    "materialize-css": "^0.100.1"
+    "materialize-css": "^0.100.1",
+    "radium": "^0.19.4"
   },
   "devDependencies": {
     "ansi-regex": "^3.0.0",
