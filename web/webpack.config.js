@@ -40,7 +40,7 @@ module.exports = {
                 loader: 'style-loader!css-loader'
             },
             {
-                test: /\.(ogg|m4v|mp4|png|ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
+                test: /\.(ogg|m4v|mp4|png|jpg|ttf|eot|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
                 loader: 'file-loader'
             }
         ],

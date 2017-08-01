@@ -1,60 +1,53 @@
 import React from "react";
 import "../css/palette.css";
 import Login from "./login.jsx";
-
+import Home from "./home.jsx";
+import Enroute from "./enroute.jsx";
+import user_background_img from "../external/images/background-2529716_1280.jpg";
+import Database from "../network/database.js";
+import Auth from "../network/auth.js";
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+} from 'react-router-dom'
 
 export default class Main extends React.Component {
     constructor(props) {
         super(props);
+
+        this.Auth = new Auth();
+        this.Database = new Database();
+
         this.state = {
-            user: null,
-            login_screen: false
-        };
-
-        // if (firebase.auth().currentUser == null) {
-        //     firebase.auth().signInWithRedirect(this.provider);
-        // }
-
-        let comp = this;
-        firebase.auth().onAuthStateChanged(function (user) {
-            if (user) {
-                comp.setState({user: user});
-            } else {
-                comp.setState({user: null});
+            user: {},
+            login_screen: false,
+            selected_page: '',
+            components: {
+                "home": <Home />,
+                "enroute": <Enroute />
             }
-        });
-
-        firebase.auth().getRedirectResult().then(result => {
-            console.log("REDIRECT!!! Result");
-            console.log(result);
-            // if (result.credential) {
-            //     // This gives you a Google Access Token. You can use it to access the Google API.
-            //     var token = result.credential.accessToken;
-            //     // console.log(token);
-            //     // ...
-            // }
-            //
-            // var user = firebase.auth().currentUser;
-            // if (user != null) {
-            //     user.providerData.forEach(function (profile) {
-            //         console.log("Sign-in provider: " + profile.providerId);
-            //         console.log("  Provider-specific UID: " + profile.uid);
-            //         console.log("  Name: " + profile.displayName);
-            //         console.log("  Email: " + profile.email);
-            //         console.log("  Photo URL: " + profile.photoURL);
-            //     });
-            // }
-            // The signed-in user info.
-            var user = result.user;
-            console.log(user);
-            comp.setState({user: user});
-        }).catch(error => {
-            console.log("ERRRRROR " + error)
-
-        });
+        };
 
         this.signOut = this.signOut.bind(this);
         this.showLoginPage = this.showLoginPage.bind(this);
+        this.setPage = this.setPage.bind(this);
+    }
+
+    async componentDidMount() {
+        this.Auth.onAuthStateChange((user) => {
+            this.setState({user: user || {}});
+        });
+
+        await this.Auth.getRedirectResult((result) => {
+            let user = result.user;
+            if (user) {
+                this.setState({user: user});
+            }
+        });
+
+        console.log("DONE!");
+
     }
 
     render() {
@@ -63,6 +56,7 @@ export default class Main extends React.Component {
                 <NavBar
                     showLoginPage={this.showLoginPage}
                     signOut={this.signOut}
+                    setPage={this.setPage}
                     user={this.state.user}
                     tabs={[
                         {href: "home", label: "Home", active: true},
@@ -71,12 +65,16 @@ export default class Main extends React.Component {
                 />
                 {this.state.login_screen && <Login showLoginPage={this.showLoginPage}/>}
 
-                <div id="home" className="row">
-                    <div className="col s6">hey</div>
-                </div>
-                <div id="enroute" className="row">
-                    <div className="col s6">no</div>
-                </div>
+                {this.state.selected_page == "home" &&
+                <Home
+
+                />}
+
+                {this.state.selected_page == "enroute" &&
+                <Enroute Database={this.Database}
+                         user={this.state.user}
+
+                />}
             </div>
         );
     }
@@ -96,6 +94,10 @@ export default class Main extends React.Component {
     showLoginPage(val) {
         this.setState({login_screen: val});
     }
+
+    setPage(name) {
+        this.setState({selected_page: name});
+    }
 }
 
 class NavBar extends React.Component {
@@ -104,20 +106,14 @@ class NavBar extends React.Component {
         this.side_nav = null;
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log(`Navbar next: ${nextProps}`);
-        console.log(nextProps);
-        return true;
-    }
-
     render() {
         return (
             <nav className="nav-extended">
                 <div className={`nav-wrapper default-primary-color`}>
                     <a href="#" className="brand-logo  center">Logo</a>
-                    <ul id="nav-right" className="right hide-on-med-and-down">
+                    <ul id="nav-right" className="right">
                         <li>
-                            {this.props.user ?
+                            {!$.isEmptyObject(this.props.user) ?
                                 <a href="#"
                                    data-activates="slide-out"
                                    ref={button => {
@@ -140,20 +136,13 @@ class NavBar extends React.Component {
                         <li>
                             <div className="user-view">
                                 <div className="background">
-                                    <img src="https://c1.staticflickr.com/4/3739/11255092594_42232c74b1_b.jpg"/>
+                                    <img src={user_background_img}/>
                                 </div>
-                                {/*<a href="#!user"><img className="circle" src="images/yuna.jpg"/></a>*/}
-                                <a href="#!name"><span className="white-text name">John Doe</span></a>
-                                <a href="#!email"><span className="white-text email">jdandturk@gmail.com</span></a>
+                                <a href="#!user"><img className="circle" src={this.props.user.photoURL}/></a>
+                                <a href="#!name"><span className="white-text name">{this.props.user.displayName}</span></a>
+                                <a href="#!email"><span className="white-text email">{this.props.user.email}</span></a>
                             </div>
                         </li>
-                        <li><a href="#!"><i className="material-icons">cloud</i>First Link With Icon</a></li>
-                        <li><a href="#!">Second Link</a></li>
-                        <li>
-                            <div className="divider"></div>
-                        </li>
-                        <li><a className="subheader">Subheader</a></li>
-                        <li><a className="waves-effect" href="#!">Third Link With Waves</a></li>
                         <li><a className="wave-effect" href="#" onClick={() => {
                             this.props.signOut();
                             $(this.side_nav).sideNav("hide");
@@ -169,7 +158,14 @@ class NavBar extends React.Component {
                         {/*<li className="tab"><a href="#test2">Enroute</a></li>*/}
                         {this.props.tabs.map((tab, i) => {
                             return (
-                                <li key={i} className="tab"><a className={tab.active || ''} href={`#${tab.href}`}>{tab.label}</a></li>
+                                <li key={i} className="tab">
+                                    <a className={tab.active || ''}
+                                       onClick={() => {
+                                           this.props.setPage(tab.href);
+                                       }}
+                                       href={`#${tab.href}`}>{tab.label}
+                                    </a>
+                                </li>
                             );
                         })}
                     </ul>

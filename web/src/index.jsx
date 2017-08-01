@@ -5,8 +5,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Main from "./components/main.jsx";
 
-$(document).ready(function() {
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+} from 'react-router-dom'
+
+$(document).ready(function () {
     ReactDOM.render(
         <Main />
-    , document.getElementById("root"));
+        , document.getElementById("root"));
 });

@@ -34,7 +34,7 @@ export default class Login extends React.Component {
                             <p>I am a very simple card. I am good at containing small bits of information.
                                 I am convenient because I require little markup to use effectively.</p>
                         </div>
-                        <div className="card-action">
+                        <div className="card-action default-primary-color">
                             <input type="image" src={google_signin_normal} onClick={() => {
                                 let provider = new firebase.auth.GoogleAuthProvider();
                                 provider.addScope('profile email');

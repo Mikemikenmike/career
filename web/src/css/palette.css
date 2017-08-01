@@ -2,9 +2,10 @@
 
 .dark-primary-color    { background: #0288D1 !important; }
 .default-primary-color { background: #03A9F4 !important; }
-.light-primary-color   { background: #B3E5FC; }
-.text-primary-color    { color: #FFFFFF; }
-.accent-color          { background: #FF4081; }
-.primary-text-color    { color: #212121; }
-.secondary-text-color  { color: #757575; }
-.divider-color         { border-color: #BDBDBD; }
+.light-primary-color   { background: #B3E5FC !important; }
+.text-primary-color    { color: #FFFFFF !important; }
+.accent-color          { background: #FF4081 !important; }
+.text-accent-color          { color: #FF4081 !important; }
+.primary-text-color    { color: #212121 !important; }
+.secondary-text-color  { color: #757575 !important; }
+.divider-color         { border-color: #BDBDBD !important; }
