@@ -4,6 +4,10 @@ require('materialize-css/dist/js/materialize.min.js');
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Main from "./components/main.jsx";
+import Home from "./components/home.jsx";
+import createHistory from 'history/createBrowserHistory'
+const history = createHistory();
+
 
 import {
     BrowserRouter as Router,
@@ -14,6 +18,9 @@ import {
 $(document).ready(function () {
     $("body").addClass("light-fill")
     ReactDOM.render(
-        <Main />
+        // <Main />
+        <Router history={history}>
+            <Route path="/" component={Main}/>
+        </Router>
         , document.getElementById("root"));
 });
