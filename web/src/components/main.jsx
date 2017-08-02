@@ -110,11 +110,12 @@ class NavBar extends React.Component {
         return (
             <nav className="nav-extended">
                 <div className={`nav-wrapper default-primary-color`}>
-                    <a href="#" className="brand-logo  center">Logo</a>
+                    <a href="#" className="brand-logo  center primary-text">Logo</a>
                     <ul id="nav-right" className="right">
                         <li>
                             {!$.isEmptyObject(this.props.user) ?
                                 <a href="#"
+                                   className="primary-text"
                                    data-activates="slide-out"
                                    ref={button => {
                                        this.side_nav = button;
@@ -124,6 +125,7 @@ class NavBar extends React.Component {
                                 </a>
                                 :
                                 <a href="#"
+                                   className="primary-text"
                                    onClick={() => {
                                        this.props.showLoginPage(true);
                                    }}>
@@ -150,16 +152,17 @@ class NavBar extends React.Component {
                         }}>Sign Out</a></li>
                     </ul>
                 </div>
-                <div className="nav-content dark-primary-color">
+                <div className="nav-content light-primary-color">
                     <ul className="tabs tabs-transparent" ref={(tabs) => {
                         $(tabs).tabs();
                     }}>
+                        <div className="indicator default-secondary-color" style={{zIndex: 1}}/>
                         {/*<li className="tab"><a className="active" href="#test1">Home</a></li>*/}
                         {/*<li className="tab"><a href="#test2">Enroute</a></li>*/}
                         {this.props.tabs.map((tab, i) => {
                             return (
                                 <li key={i} className="tab">
-                                    <a className={tab.active || ''}
+                                    <a className={`primary-text ${tab.active || ''}`}
                                        onClick={() => {
                                            this.props.setPage(tab.href);
                                        }}

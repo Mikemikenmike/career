@@ -12,6 +12,7 @@ import {
 } from 'react-router-dom'
 
 $(document).ready(function () {
+    $("body").addClass("light-fill")
     ReactDOM.render(
         <Main />
         , document.getElementById("root"));

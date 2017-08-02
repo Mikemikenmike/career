@@ -23,6 +23,7 @@ export default class Enroute extends React.Component {
                 {Object.entries(this.state.modules).map(([name, val], i) => {
                     return <Module key={name + i}
                                    name={name}
+                                   lock={!this.state.user_modules[name]}
                                    description={val.description}
                     />
                 })}
