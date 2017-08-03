@@ -4,13 +4,14 @@ import Login from "./login.jsx";
 import NavBar from "./navbar.jsx";
 import Home from "./home.jsx";
 import Enroute from "./enroute.jsx";
+import Study from "./study.jsx";
 import Database from "../network/database.js";
 import Auth from "../network/auth.js";
 import {
     BrowserRouter as Router,
     Route,
     Link
-} from 'react-router-dom'
+} from 'react-router-dom';
 
 export default class Main extends React.Component {
     constructor(props) {
@@ -23,10 +24,8 @@ export default class Main extends React.Component {
             user: {},
             login_screen: false,
             selected_page: '',
-            components: {
-                "home": <Home />,
-                "enroute": <Enroute />
-            }
+            modules: {},
+            user_modules: {}
         };
 
         this.signOut = this.signOut.bind(this);
@@ -35,7 +34,7 @@ export default class Main extends React.Component {
     }
 
     async componentDidMount() {
-        this.Auth.onAuthStateChange((user) => {
+        this.Auth.onAuthStateChange(async(user) => {
             this.setState({user: user || {}});
         });
 
@@ -45,9 +44,6 @@ export default class Main extends React.Component {
                 this.setState({user: user});
             }
         });
-
-        console.log("DONE!");
-
     }
 
     render() {
@@ -60,30 +56,28 @@ export default class Main extends React.Component {
                     setPage={this.setPage}
                     user={this.state.user}
                     tabs={[
-                        {href: "home", label: "Home", active: true},
-                        {href: "enroute", label: "Enroute", active: true}
+                        {href: "home", label: "Home"},
+                        {href: "enroute", label: "Enroute"}
                     ]}
                     {...this.props}
                 />
                 {this.state.login_screen && <Login showLoginPage={this.showLoginPage}/>}
 
+                <Route exact path={`${this.props.match.url}`} component={Home}/>
+                <Route exact path={`${this.props.match.url}home`} component={Home}/>
 
-                <Route exact path={this.props.match.url} component={Home}/>
-                <Route exact path={this.props.match.url + "home"} component={Home}/>
-                <Route path={`${this.props.match.url}enroute`} component={() => {
-                    return <Enroute Database={this.Database} user={this.state.user} {...this.props}/>
+                <Route exact path={`${this.props.match.url}enroute`} component={props => {
+                    return <Enroute Database={this.Database}
+                                    user={this.state.user}
+                                    {...props}
+                    />
                 }}/>
 
-                {/*{this.state.selected_page == "home" &&*/}
-                {/*<Home*/}
-
-                {/*/>}*/}
-
-                {/*{this.state.selected_page == "enroute" &&*/}
-                {/*<Enroute Database={this.Database}*/}
-                {/*user={this.state.user}*/}
-
-                {/*/>}*/}
+                <Route path={`${this.props.match.url}enroute/:module`} component={props => {
+                    return <Study Database={this.Database}
+                                  user={this.state.user}
+                                  {...props} />
+                }}/>
             </div>
         );
     }

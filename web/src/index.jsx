@@ -5,6 +5,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Main from "./components/main.jsx";
 import Home from "./components/home.jsx";
+import Enroute from "./components/enroute.jsx";
 import createHistory from 'history/createBrowserHistory'
 const history = createHistory();
 
@@ -13,14 +14,14 @@ import {
     BrowserRouter as Router,
     Route,
     Link
-} from 'react-router-dom'
+} from 'react-router-dom';
 
 $(document).ready(function () {
-    $("body").addClass("light-fill")
+    $("body").addClass("light-fill");
     ReactDOM.render(
         // <Main />
         <Router history={history}>
-            <Route path="/" component={Main}/>
+            <Route component={Main} />
         </Router>
         , document.getElementById("root"));
 });

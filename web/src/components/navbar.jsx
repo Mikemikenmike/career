@@ -64,9 +64,9 @@ export default class NavBar extends React.Component {
                         {this.props.tabs.map((tab, i) => {
                             return (
                                 <li key={i} className="tab">
-                                    <a className={`primary-text ${tab.active || ''}`}
+                                    <a className={`primary-text ${this.props.location.pathname.includes(tab.href) ? 'active' : ''}`}
                                        onClick={() => {
-                                           this.props.history.push(`${tab.href}`);
+                                           this.props.history.push(`/${tab.href}`);
                                        }}
                                        href={`#${tab.href}`}>{tab.label}
                                     </a>

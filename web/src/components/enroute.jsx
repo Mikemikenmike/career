@@ -1,14 +1,23 @@
 import React from "react";
 import Module from "./module.jsx";
+import Study from "./study.jsx";
+import {
+    BrowserRouter as Router,
+    Route,
+    Link
+} from 'react-router-dom';
 
 export default class Enroute extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            modules: {}
+            modules: {},
+            user_modules: {}
         };
         console.log("Enroute Constructed");
+        console.log(`${this.props.match.url}/:module`);
     }
+
 
     async componentDidMount() {
         let user_modules = await this.props.Database.Get(`permissions/${this.props.user.uid}/modules`);
@@ -25,9 +34,11 @@ export default class Enroute extends React.Component {
                                    name={name}
                                    lock={!this.state.user_modules[name]}
                                    description={val.description}
+                                   {...this.props}
                     />
                 })}
             </div>
+
         );
     }
 }
