@@ -4,12 +4,10 @@ require('materialize-css/dist/js/materialize.min.js');
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Main from "./components/main.jsx";
-import Home from "./components/home.jsx";
-import Enroute from "./components/enroute.jsx";
+
+
 import createHistory from 'history/createBrowserHistory'
 const history = createHistory();
-
-
 import {
     BrowserRouter as Router,
     Route,

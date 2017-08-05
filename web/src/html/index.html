@@ -3,6 +3,7 @@
     <title>ATC</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <script src="https://js.stripe.com/v2/"></script>
     <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
     <script>
         // Initialize Firebase
@@ -15,6 +16,7 @@
             messagingSenderId: "70262629903"
         };
         firebase.initializeApp(config);
+        Stripe.setPublishableKey("pk_test_uQtir08DEfJyETWW4I8DbUD8");
     </script>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">

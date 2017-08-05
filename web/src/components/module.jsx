@@ -8,7 +8,6 @@ import {
 export default class Module extends React.Component {
     constructor(props) {
         super(props);
-        console.log(`${this.props.match.url}/${this.props.name}`);
     }
 
     render() {

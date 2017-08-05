@@ -5,6 +5,7 @@ import NavBar from "./navbar.jsx";
 import Home from "./home.jsx";
 import Enroute from "./enroute.jsx";
 import Study from "./study.jsx";
+import StripeClass from "./stripe.jsx";
 import Database from "../network/database.js";
 import Auth from "../network/auth.js";
 import {
@@ -36,18 +37,19 @@ export default class Main extends React.Component {
     async componentDidMount() {
         this.Auth.onAuthStateChange(async(user) => {
             this.setState({user: user || {}});
+            console.log("USER!");
         });
 
         await this.Auth.getRedirectResult((result) => {
             let user = result.user;
             if (user) {
                 this.setState({user: user});
+                console.log("USER!");
             }
         });
     }
 
     render() {
-        console.log(history);
         return (
             <div>
                 <NavBar
@@ -65,6 +67,14 @@ export default class Main extends React.Component {
 
                 <Route exact path={`${this.props.match.url}`} component={Home}/>
                 <Route exact path={`${this.props.match.url}home`} component={Home}/>
+
+                <Route exact path={`${this.props.match.url}stripe`} component={props => {
+                    console.log("render stripe route");
+                    return <StripeClass Database={this.Database}
+                                        user={this.state.user}
+                                        {...props}
+                    />
+                }}/>
 
                 <Route exact path={`${this.props.match.url}enroute`} component={props => {
                     return <Enroute Database={this.Database}

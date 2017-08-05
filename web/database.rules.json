@@ -1,0 +1,48 @@
+{
+  "rules": {
+    "users": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        ".write": "$uid === auth.uid && (!data.exists() || !newData.exists())"
+      }
+    },
+    "permissions": {
+      "$uid": {
+        ".read": "$uid === auth.uid"
+      }
+    },
+    "modules": {
+      ".read": true
+    },
+    "stripe_customers": {
+      "$uid": {
+        ".read": "$uid === auth.uid",
+        "sources": {
+          "$chargeId": {
+            ".write": "$uid === auth.uid",
+            "token": {
+              ".validate": "newData.isString()"
+            },
+            "$other": {
+              ".validate": false
+            }
+          }
+        },
+        "charges": {
+          "$sourceId": {
+            ".write": "$uid === auth.uid",
+            "source": {
+              ".validate": "newData.isString()"
+            },
+            "amount": {
+              ".validate": "newData.isNumber()"
+            },
+            "$other": {
+              ".validate": false
+            }
+          }
+        }
+      }
+    }
+  }
+}

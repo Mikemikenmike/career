@@ -56,11 +56,9 @@ export default class NavBar extends React.Component {
                 <div className="nav-content light-primary-color">
                     {/*<Link className={`primary-text`} to={"/enroute"}>{"saw"}</Link>*/}
                     <ul className="tabs tabs-transparent" ref={(tabs) => {
-                        $(tabs).tabs();
+                        $(tabs).tabs({swipeable: true});
                     }}>
                         <div className="indicator default-secondary-color" style={{zIndex: 1}}/>
-                        {/*<li className="tab"><a className="active" href="#test1">Home</a></li>*/}
-                        {/*<li className="tab"><a href="#test2">Enroute</a></li>*/}
                         {this.props.tabs.map((tab, i) => {
                             return (
                                 <li key={i} className="tab">

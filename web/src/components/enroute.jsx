@@ -22,7 +22,6 @@ export default class Enroute extends React.Component {
     async componentDidMount() {
         let user_modules = await this.props.Database.Get(`permissions/${this.props.user.uid}/modules`);
         let modules = await this.props.Database.Get(`modules`);
-        console.log(modules.val());
         this.setState({modules: modules.val(), user_modules: user_modules.val()});
     }
 
