@@ -18,12 +18,12 @@ export default class Module extends React.Component {
                         <span className="card-title">{this.props.name}</span>
                         <p>{this.props.description}</p>
                         { this.props.lock &&
-                        <a className="btn-floating btn-large halfway-fab waves-effect waves-light dark-secondary-color secondary-text">
+                        <a className="btn-floating btn halfway-fab waves-effect waves-light dark-secondary-color secondary-text">
                             <i className="material-icons">lock_outline</i>
                         </a>
                         }
                     </div>
-                    <div className="card-action default-primary-color">
+                    <div className="card-action light-secondary-color">
                         <Link
                             className={`btn waves-effect default-secondary-color secondary-text ${this.props.lock && "disabled"}`}
                             to={`${this.props.match.url}/${this.props.name}`}>

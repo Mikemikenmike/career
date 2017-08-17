@@ -6,6 +6,10 @@
     <script src="https://js.stripe.com/v2/"></script>
     <script src="https://www.gstatic.com/firebasejs/4.2.0/firebase.js"></script>
     <script>
+        var SpeechRecognition = SpeechRecognition || webkitSpeechRecognition;
+        var SpeechGrammarList = SpeechGrammarList || webkitSpeechGrammarList;
+        var SpeechRecognitionEvent = SpeechRecognitionEvent || webkitSpeechRecognitionEvent;
+
         // Initialize Firebase
         var config = {
             apiKey: "AIzaSyAG0Mpjg0FpSxEBv_nDyT__Bkoy06SCKrA",

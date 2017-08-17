@@ -11,11 +11,5 @@
 .dark-fill { background: #E1E2E1 !important; }
 .light-fill { background: #F5F5F6 !important; }
 
-
-
-.text-primary-color    { color: #FFFFFF !important; }
-.accent-color          { background: #FF4081 !important; }
-.text-accent-color          { color: #FF4081 !important; }
-.primary-text-color    { color: #212121 !important; }
-.secondary-text-color  { color: #757575 !important; }
-.divider-color         { border-color: #BDBDBD !important; }
+.success-color { background: #00C851 !important; }
+.danger-color { background: #ff4444 !important; }

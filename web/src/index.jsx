@@ -5,7 +5,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Main from "./components/main.jsx";
 
-
 import createHistory from 'history/createBrowserHistory'
 const history = createHistory();
 import {
