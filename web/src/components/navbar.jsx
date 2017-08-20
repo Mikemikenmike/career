@@ -5,7 +5,6 @@ import {Link} from 'react-router-dom';
 export default class NavBar extends React.Component {
     constructor(props) {
         super(props);
-        this.side_nav = null;
     }
 
     render() {
@@ -13,10 +12,6 @@ export default class NavBar extends React.Component {
             <nav className="navbar ">
                 <div className="navbar-brand">
                     <Link to="/" className="navbar-item">Class of 8/14</Link>
-
-                    <Link className="navbar-item is-hidden-desktop" to="/signin" target="_blank">
-                       Sign In
-                    </Link>
 
                     <div className="navbar-burger burger" data-target="nav_menu" onClick={(e) => {
                         let ele = $(e.target);
@@ -44,11 +39,15 @@ export default class NavBar extends React.Component {
                             </div>
                         </div>
                     </div>
+                    <div className="navbar-end">
+                        <Link className="navbar-item" to="/signin">
+                            Sign In
+                        </Link>
+                    </div>
                 </div>
             </nav>
         );
     }
-
 
 
 }
