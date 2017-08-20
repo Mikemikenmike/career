@@ -16,7 +16,6 @@ export default class Basics extends React.Component {
             active = uri[uri.length - 1];
         }
         this.state = {active: active};
-
     }
 
     componentWillReceiveProps() {
@@ -34,6 +33,7 @@ export default class Basics extends React.Component {
     };
 
     render() {
+        // console.log(this.state);
         return (
             <div id={this.props.id}>
                 <section className="hero is-primary">
@@ -45,7 +45,7 @@ export default class Basics extends React.Component {
                         </div>
                     </div>
                 </section>
-                <div className="container is-fluid" style={{paddingTop: "24px"}}>
+                <div className="container is-fluid is-mobile" style={{paddingTop: "24px"}}>
                     <div className="columns">
                         <div className="column is-one-quarter-desktop">
                             <aside className="menu">
@@ -55,10 +55,10 @@ export default class Basics extends React.Component {
                                 <ul className="menu-list">
                                     {menu.map((item, i) => {
                                         return <li key={i}>
-                                            <Link to={`${this.props.match.url}/${i}`}
-                                                  className={`${this.state.active == i && 'is-active'}`}
+                                            <Link to={`${this.props.match.url}/${item.location}`}
+                                                  className={`${this.state.active == item.location && 'is-active'}`}
                                                   onClick={(e) => {
-                                                      this.setState({active: i})
+                                                      this.setState({active: item.location})
                                                   }}>
                                                 {item.name}
                                             </Link>
@@ -68,7 +68,8 @@ export default class Basics extends React.Component {
                             </aside>
                         </div>
                         <div className="column">
-                            <Route path={`${this.props.match.url}/:id`} component={BasicsQuiz}/>
+                            <Route path={`${this.props.match.url}/:id`}
+                                   component={(props) => <BasicsQuiz Database={this.props.Database}  {...props}/>}/>
                             <Route exact path={`${this.props.match.url}`} component={(props) => {
                                 return <h1 className="title is-1">Select a Lesson</h1>
                             }}/>
@@ -82,13 +83,11 @@ export default class Basics extends React.Component {
 
 const menu = [
     {
-        name: "01 - Course Overview"
-    },
-    {
+        location: "2",
         name: "02 - ATC System and NAS"
     },
     {
-        name: "03 - Crew Resource Management"
-    },
-    {}
+        location: "4",
+        name: "04 - Air traffic Basics"
+    }
 ];

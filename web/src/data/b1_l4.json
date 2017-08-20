@@ -1,0 +1,72 @@
+{
+  "1b": {
+    "question": "Movement areas include: ",
+    "answer": [
+      "Runways",
+      "Taxiways"
+    ],
+    "choices": [
+      "Runways",
+      "Taxiways",
+      "Ramp (or Apron)",
+      "Passenger drop off areas"
+    ],
+    "page": "2",
+    "type": "multiple_select"
+  },
+  "2b": {
+    "question": "Movement areas are used for: ",
+    "answer": "Takeoff and landing of aircraft",
+    "choices": [
+      "Takeoff and landing of aircraft",
+      "Loading and unloading of passengers",
+      "Refueling",
+      "Pilot pre-flight walk around"
+    ],
+    "page": "2",
+    "type": "multiple_choice"
+  },
+  "3b": {
+    "question": "At airports/heliports with a tower, specific approval for entry onto movement areas must be obtained from ATC.",
+    "answer": true,
+    "choices": [
+      true,
+      false
+    ],
+    "page": "2",
+    "type": "multiple_choice"
+  },
+  "4b": {
+    "question": "A runway with a magnetic heading of 163 would be designated as",
+    "answer": "16",
+    "choices": [
+      "16",
+      "60",
+      "17",
+      "163"
+    ],
+    "page": "5",
+    "type": "multiple_choice"
+  },
+  "5b": {
+    "question": "What type of runway marking closely identifies the actual beginning point of the runway threshold used for landings?",
+    "answer": "Runway threshold markings",
+    "choices": ["Runway threshold markings", "Aiming point", "TDZM", "Runway designator"],
+    "page": "8",
+    "type": "multiple_choice"
+  },
+  "6b": {
+    "question": "Runways with a nonprecision instrument approach have which of the following markings?",
+    "answer": ["Threshold", "Aiming point", "Designation", "Centerline"],
+    "choices": ["Threshold", "Aiming point", "Touchdown zone", "Designation", "Centerline"],
+    "page": "11",
+    "type": "multiple_select"
+  },
+  "7b": {
+    "question": "Runway shoulder markings are required when runway edge markings are present.",
+    "answer": false,
+    "choices": [true, false],
+    "page": "11",
+    "type": "multiple_choice"
+  }
+}

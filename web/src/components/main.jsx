@@ -70,8 +70,8 @@ export default class Main extends React.Component {
                 <Route exact path={`${this.props.match.url}home`} component={Home}/>
 
 
-                <Route path={`${this.props.match.url}atc/basics`} component={Basics} />
-                <Route exact path={`${this.props.match.url}atc`} component={Basics} />
+                <Route path={`${this.props.match.url}atc/basics`} component={(props) => <Basics Database={this.Database} {...props} />} />
+                <Route exact path={`${this.props.match.url}atc`} component={(props) => <Basics Database={this.Database} {...props}/>} />
 
                 {/*<Route exact path={`${this.props.match.url}stripe`} component={props => {*/}
                     {/*console.log("render stripe route");*/}

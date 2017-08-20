@@ -1,25 +1,24 @@
 {
-  "1": {
+  "1a": {
     "question": "The _ was established in 1967, but has existed in some form since 1926.",
     "answer": "Federal Aviation Administration",
     "choices": ["Air Force", "NASA", "Yellowstone National Park", "Federal Aviation Administration"],
     "type": "multiple_choice",
     "page": 0
   },
-  "2": {
+  "2a": {
     "question": "In 1934 the Aeronautics Branch was renamed the Bureau of Air Commerce.",
     "answer": true,
     "type": "multiple_choice",
     "choices": [false, true]
   },
-  "3": {
+  "3a": {
     "question": "The FAA's mission is to provide the _, most _ aerospace system in the world.",
     "answer": "safest, efficient",
     "type": "multiple_choice",
     "choices": ["Air Force", "NASA", "Yellowstone National Park", "Federal Aviation Administration", "safest, efficient"]
-
   },
-  "4": {
+  "4a": {
     "question": "The FAA Headquarters, located in DC, is comprised of multiple organizations and offices. These include: ",
     "answer": [
       "Airports",
@@ -32,22 +31,23 @@
       "Airports",
       "ATO",
       "AFN",
-      "Office of NextGen"
+      "Office of NextGen",
+      "DoT"
     ]
   },
-  "5": {
+  "5a": {
     "question": "The Office of the Deputy Assistant Administrator for Regions and Center Operations (ARC) reports to the FAA Administrator for the AFN and leads how many regional offices?",
     "answer": 9,
     "type": "multiple_choice",
     "choices": ["Air Force", "NASA", "Yellowstone National Park", "Federal Aviation Administration", 9]
   },
-  "6": {
+  "6a": {
     "question": "The ATO is responsible for ensuring the safety, efficiency, and security of air traffic operations across the entire NAS.",
     "answer": true,
     "type": "multiple_choice",
     "choices": [false, true]
   },
-  "7": {
+  "7a": {
     "question": "The ATO is comprised of seven Service Units, including: ",
     "answer": [
       "Technical Operations",
@@ -60,14 +60,14 @@
       "Air Traffic Services"
     ]
   },
-  "8": {
+  "8a": {
     "question": "AJT is one Service Unit of the ATO that provides: ",
     "answer": "Safe, secure, and efficient management for the NAS and international airspace assigned to U.S. control.",
     "type": "multiple_choice",
     "page": "12",
     "choices": ["Air Force", "NASA", "Yellowstone National Park", "Federal Aviation Administration", "Safe, secure, and efficient management for the NAS and international airspace assigned to U.S. control."]
   },
-  "9": {
+  "9a": {
     "question": "ATO ATC facilities are under one of three Service Areas, which include: ",
     "answer": [
       "Western",
@@ -82,7 +82,7 @@
     "type": "multiple_select",
     "page": "13"
   },
-  "10": {
+  "10a": {
     "question": "As a controller, you will be at the _ of the FAA lines of authority.",
     "answer": "bottom",
     "type": "multiple_choice",
@@ -90,14 +90,14 @@
     "choices": ["Air Force", "NASA", "Yellowstone National Park", "Federal Aviation Administration", "bottom"]
 
   },
-  "11": {
+  "11a": {
     "question": "Visual Flight Rules (VFR) govern the procedures for conducting flight under visual conditions and are used to indicate: ",
     "answer": "weather conditions, type of flight plan",
     "type": "multiple_choice",
     "page": "18",
     "choices": ["Air Force", "NASA", "Yellowstone National Park", "Federal Aviation Administration", "weather conditions, type of flight plan"]
   },
-  "12": {
+  "12a": {
     "question": "ATC is responsible for separating a VFR flight from other traffic, terrain, and man-made objects on the ground.",
     "answer": false,
     "type": "multiple_choice",

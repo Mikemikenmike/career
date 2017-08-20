@@ -1,85 +1,25 @@
 import React from "react";
-import * as update from "immutability-helper";
+import update from "immutability-helper";
 
 export class MultipleChoice extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             selected: null,
-            correct: null,
-            choice_set: shuffleArray(this.props.question.choices || [])
-        }
-    }
-
-    componentWillReceiveProps(nextProps) {
-        if (this.props.question != nextProps.question) {
-            this.setState({
-                selected: null,
-                correct: null,
-                choice_set: shuffleArray(nextProps.question.choices || [])
-            })
-        }
-
-    }
-
-    render() {
-        return (
-            <div>
-                <h2>
-                    {this.props.question.question}
-                </h2>
-
-                <p className="subtitle">Select the Correct Answer</p>
-
-                {this.state.choice_set.map((choice, i) => {
-                    return <div className="field" key={i}>
-                        <label className="radio">
-                            <input type="radio" name="answer"
-                                   selected={i == this.state.selected ? true : false}
-                                   onClick={() => {
-                                       this.setState({selected: i, correct: null});
-                                   }}/> {"" + choice} {this.state.correct != null ? this.state.selected == i ? this.state.correct ?
-                                    <span className="icon">
-                                      <i className="fa fa-check"/>
-                                    </span> : <span className="icon">
-                                      <i className="fa fa-close"/>
-                                    </span> : null : null}
-                        </label>
-                    </div>
-                })}
-
-
-                <div className="field is-pulled-right">
-                    <div className="control">
-                        <button className="button is-success" onClick={(e) => {
-                            if (this.state.correct) {
-                                this.props.next_question(this.props.id);
-                            }
-                            if (this.state.choice_set[this.state.selected] == this.props.question.answer) {
-                                this.setState({correct: true})
-                            } else {
-                                this.setState({correct: false})
-                            }
-                        }}>
-                            {this.state.correct != null ? this.state.correct ? "Next" : "Try Again" : "Check"}
-                        </button>
-                    </div>
-                </div>
-            </div>
-        )
-    }
-}
-
-export class MultipleSelect extends React.Component {
-    constructor(props) {
-        super(props);
-        console.log(update);
-        this.state = {
-            selected: {},
             correct: null
         }
     }
 
+    componentWillReceiveProps(nextProps) {
+        if (this.props.question.question != nextProps.question.question) {
+            this.setState({
+                selected: null,
+                correct: null,
+                answered: null
+            })
+        }
+    }
+
     render() {
         return (
             <div>
@@ -89,34 +29,155 @@ export class MultipleSelect extends React.Component {
 
                 <p className="subtitle">Select the Correct Answer</p>
 
-                {this.props.choices.map((choice, i) => {
+                {this.props.question.choices.map((choice, i) => {
                     return <div className="field" key={i}>
-                        <label className="checkbox">
-                            <input type="checkbox"
-                                   checked={this.state.selected[choice]}
+                        <label className="radio">
+                            <input type="radio" name="answer"
+                                   disabled={this.state.answered && true}
+                                   checked={choice == this.state.selected && true}
                                    onClick={() => {
-                                       this.setState(update(this.state, {selected: {$merge: {choice: !this.state.selected[choice]}}, correct: {$set: null}}));
-                                   }}/> {"" + choice}
+                                       this.setState({selected: choice, correct: null});
+                                   }}/> {"" + choice} {this.state.answered && this.is_correct(choice)}
                         </label>
                     </div>
                 })}
 
+                <hr />
+
+                <nav className="level is-mobile">
+                    <div className="level-left">
+                        <div className="level-item">
+                            <p className="subtitle is-5">
+                                <div className="field">
+                                    Page <strong>{this.props.question.page}</strong>
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="level-right">
+                        <p className="level-item">
+                            <div className="field">
+                                <div className="control">
+                                    <button className="button is-primary" onClick={(e) => {
+                                        if (this.state.answered) {
+                                            this.props.next_question(this.props.id);
+                                        }
+                                        this.setState({answered: true});
+                                    }}>
+                                        {this.state.answered ? "Next" : "Check"}
+                                    </button>
+                                </div>
+                            </div>
+                        </p>
+                    </div>
+                </nav>
+            </div>
+        )
+    }
+
+    is_correct = (choice) => {
+        if (this.state.selected == choice && choice == this.props.question.answer) {
+            return <span className="icon" style={{color: 'hsl(141, 71%, 48%)'}}><i className="fa fa-check"/></span>
+        } else if (this.state.selected == choice && choice != this.props.question.answer) {
+            return <span className="icon" style={{color: 'hsl(348, 100%, 61%)'}}><i className="fa fa-close"/></span>
+        } else if (choice == this.props.question.answer) {
+            return <span className="icon" style={{color: 'hsl(141, 71%, 48%)'}}><i className="fa fa-check"/></span>
+        }
+
+    }
+
+
+}
+
+export class MultipleSelect extends React
+    .Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            selected: {},
+            correct: null,
+            answered: false
+        }
+    }
+
+
+    componentWillReceiveProps(nextProps) {
+        if (this.props.question.question != nextProps.question.question) {
+            this.setState({
+                selected: {},
+                correct: null,
+                answered: null
+            })
+        }
+    }
+
+    render() {
+        return (
+            <div>
+                <h2>
+                    {this.props.question.question}
+                </h2>
+
+                <p className="subtitle">Select the Correct Answer</p>
+
+                {this.props.question.choices.map((choice, i) => {
+                    return <div className="field" key={i}>
+                        <label className="checkbox">
+                            <input type="checkbox"
+                                   checked={this.state.selected[choice]}
+                                   disabled={this.state.answered && true}
+                                   onChange={() => {
+                                       this.setState(update(this.state, {
+                                           selected: {$merge: {[choice]: !this.state.selected[choice]}},
+                                           correct: {$set: null}
+                                       }));
+                                   }}/> {"" + choice} {this.state.answered && this.is_correct(choice)}
+                        </label>
+                    </div>
+                })}
+
+                <hr />
+
+                <nav className="level is-mobile">
+                    <div className="level-left">
+                        <div className="level-item">
+                            <p className="subtitle is-5">
+                                <div className="field">
+                                    Page <strong>{this.props.question.page}</strong>
+                                </div>
+                            </p>
+                        </div>
+                    </div>
+
+                    <div className="level-right">
+                        <p className="level-item">
+                            <div className="field">
+                                <div className="control">
+                                    <button className="button is-primary" onClick={(e) => {
+                                        if (this.state.answered) {
+                                            this.props.next_question(this.props.id);
+                                        }
+                                        this.setState({answered: true});
+                                    }}>
+                                        {this.state.answered ? "Next" : "Check"}
+                                    </button>
+                                </div>
+                            </div>
+                        </p>
+                    </div>
+                </nav>
             </div>
         );
     }
-}
 
-/**
- * Randomize array element order in-place.
- * Using Durstenfeld shuffle algorithm.
- */
-function shuffleArray(array) {
-    console.log(array);
-    for (let i = array.length - 1; i > 0; i--) {
-        let j = Math.floor(Math.random() * (i + 1));
-        let temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
+    is_correct = (choice) => {
+        if ($.inArray(choice, this.props.question.answer) >= 0 && this.state.selected[choice]) {
+            return <span className="icon" style={{color: 'hsl(141, 71%, 48%)'}}><i className="fa fa-check"/></span>
+        } else if ($.inArray(choice, this.props.question.answer) < 0 && !this.state.selected[choice]) {
+            return <span className="icon" style={{color: 'hsl(141, 71%, 48%)'}}><i className="fa fa-check"/></span>
+        } else {
+            return <span className="icon" style={{color: 'hsl(348, 100%, 61%)'}}><i className="fa fa-close"/></span>
+        }
     }
-    return array;
 }

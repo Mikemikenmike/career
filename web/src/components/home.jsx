@@ -21,7 +21,7 @@ export default class Home extends React.Component {
                                 <div className="level-left">
                                     <div className="level-item">
                                         <h1 className="title">
-                                            18/18. Let's do this.
+                                            18/18. <span className="icon is-medium"><i className="fa fa-arrow-right"/></span>
                                         </h1>
                                     </div>
                                 </div>
