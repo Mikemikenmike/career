@@ -1,5 +1,6 @@
 import React from 'react';
 import user_background_img from "../external/images/background-2529716_1280.jpg";
+import {Link} from 'react-router-dom';
 
 export default class NavBar extends React.Component {
     constructor(props) {
@@ -9,71 +10,45 @@ export default class NavBar extends React.Component {
 
     render() {
         return (
-            <nav className="nav-extended">
-                <div className={`nav-wrapper default-primary-color`}>
-                    <a href="#" className="brand-logo  center primary-text">Logo</a>
-                    <ul id="nav-right" className="right">
-                        <li>
-                            {!$.isEmptyObject(this.props.user) ?
-                                <a href="#"
-                                   className="primary-text"
-                                   data-activates="slide-out"
-                                   ref={button => {
-                                       this.side_nav = button;
-                                       $(button).sideNav();
-                                   }}>
-                                    <i className="material-icons">menu</i>
-                                </a>
-                                :
-                                <a href="#"
-                                   className="primary-text"
-                                   onClick={() => {
-                                       this.props.showLoginPage(true);
-                                   }}>
-                                    Sign In
-                                </a>
-                            }
-                        </li>
-                    </ul>
-                    <ul id="slide-out" className="side-nav">
-                        <li>
-                            <div className="user-view">
-                                <div className="background">
-                                    <img src={user_background_img}/>
-                                </div>
-                                <a href="#!user"><img className="circle" src={this.props.user.photoURL}/></a>
-                                <a href="#!name"><span className="white-text name">{this.props.user.displayName}</span></a>
-                                <a href="#!email"><span className="white-text email">{this.props.user.email}</span></a>
-                            </div>
-                        </li>
-                        <li><a className="wave-effect" href="#" onClick={() => {
-                            this.props.signOut();
-                            $(this.side_nav).sideNav("hide");
-                            $(this.side_nav).sideNav("destroy");
-                        }}>Sign Out</a></li>
-                    </ul>
-                </div>
-                <div className="nav-content light-primary-color">
-                    {/*<Link className={`primary-text`} to={"/enroute"}>{"saw"}</Link>*/}
-                    <ul className="tabs tabs-transparent" ref={(tabs) => {
-                        $(tabs).tabs({swipeable: true});
+            <nav className="navbar ">
+                <div className="navbar-brand">
+                    <Link to="/" className="navbar-item">Class of 8/14</Link>
+
+                    <Link className="navbar-item is-hidden-desktop" to="/signin" target="_blank">
+                       Sign In
+                    </Link>
+
+                    <div className="navbar-burger burger" data-target="nav_menu" onClick={(e) => {
+                        let ele = $(e.target);
+                        ele.toggleClass("is-active");
+                        $("#nav_menu").toggleClass("is-active");
                     }}>
-                        <div className="indicator default-secondary-color" style={{zIndex: 1}}/>
-                        {this.props.tabs.map((tab, i) => {
-                            return (
-                                <li key={i} className="tab">
-                                    <a className={`primary-text ${this.props.location.pathname.includes(tab.href) ? 'active' : ''}`}
-                                       onClick={() => {
-                                           this.props.history.push(`/${tab.href}`);
-                                       }}
-                                       href={`#${tab.href}`}>{tab.label}
-                                    </a>
-                                </li>
-                            );
-                        })}
-                    </ul>
+                        <span/>
+                        <span/>
+                        <span/>
+                    </div>
+                </div>
+                <div id="nav_menu" className="navbar-menu">
+                    <div className="navbar-start">
+                        <div className="navbar-item has-dropdown is-hoverable">
+                            <Link className="navbar-link is-active" to="/atc/basics">
+                                ATC
+                            </Link>
+                            <div className="navbar-dropdown ">
+                                <Link className="navbar-item " to="/atc/basics">
+                                    Basics
+                                </Link>
+                                <Link className="navbar-item " to="/atc/enroute">
+                                    Enroute
+                                </Link>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </nav>
         );
     }
+
+
+
 }

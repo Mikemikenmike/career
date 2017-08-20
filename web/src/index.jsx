@@ -1,5 +1,9 @@
-require('materialize-css/dist/css/materialize.min.css');
-require('materialize-css/dist/js/materialize.min.js');
+// require('materialize-css/dist/css/materialize.min.css');
+// require('materialize-css/dist/js/materialize.min.js');
+//
+
+import "bulma/css/bulma.css";
+// import "bulma/css/bulma.css.map";
 
 import React from 'react';
 import ReactDOM from 'react-dom';

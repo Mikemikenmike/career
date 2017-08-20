@@ -6,7 +6,7 @@ import {
 } from 'react-router-dom'
 
 
-export default class Home extends React.Component {
+export default class BasicsQuiz extends React.Component {
     constructor(props) {
         super(props);
     }
@@ -14,7 +14,7 @@ export default class Home extends React.Component {
     render() {
         return (
             <div id={this.props.id}>
-                hi
+                {this.props.match.params.id}
 
             </div>
         );

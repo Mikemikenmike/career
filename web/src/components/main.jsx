@@ -3,6 +3,7 @@ import "../css/palette.css";
 import Login from "./login.jsx";
 import NavBar from "./navbar.jsx";
 import Home from "./home.jsx";
+import Basics from "./basics.jsx";
 import Enroute from "./enroute.jsx";
 import Study from "./study.jsx";
 import StripeClass from "./stripe.jsx";
@@ -63,31 +64,35 @@ export default class Main extends React.Component {
                     ]}
                     {...this.props}
                 />
-                {this.state.login_screen && <Login showLoginPage={this.showLoginPage}/>}
+                {/*{this.state.login_screen && <Login showLoginPage={this.showLoginPage}/>}*/}
 
                 <Route exact path={`${this.props.match.url}`} component={Home}/>
                 <Route exact path={`${this.props.match.url}home`} component={Home}/>
 
-                <Route exact path={`${this.props.match.url}stripe`} component={props => {
-                    console.log("render stripe route");
-                    return <StripeClass Database={this.Database}
-                                        user={this.state.user}
-                                        {...props}
-                    />
-                }}/>
 
-                <Route exact path={`${this.props.match.url}enroute`} component={props => {
-                    return <Enroute Database={this.Database}
-                                    user={this.state.user}
-                                    {...props}
-                    />
-                }}/>
+                <Route path={`${this.props.match.url}atc/basics`} component={Basics} />
+                <Route exact path={`${this.props.match.url}atc`} component={Basics} />
 
-                <Route path={`${this.props.match.url}enroute/:module`} component={props => {
-                    return <Study Database={this.Database}
-                                  user={this.state.user}
-                                  {...props} />
-                }}/>
+                {/*<Route exact path={`${this.props.match.url}stripe`} component={props => {*/}
+                    {/*console.log("render stripe route");*/}
+                    {/*return <StripeClass Database={this.Database}*/}
+                                        {/*user={this.state.user}*/}
+                                        {/*{...props}*/}
+                    {/*/>*/}
+                {/*}}/>*/}
+
+                {/*<Route exact path={`${this.props.match.url}enroute`} component={props => {*/}
+                    {/*return <Enroute Database={this.Database}*/}
+                                    {/*user={this.state.user}*/}
+                                    {/*{...props}*/}
+                    {/*/>*/}
+                {/*}}/>*/}
+
+                {/*<Route path={`${this.props.match.url}enroute/:module`} component={props => {*/}
+                    {/*return <Study Database={this.Database}*/}
+                                  {/*user={this.state.user}*/}
+                                  {/*{...props} />*/}
+                {/*}}/>*/}
             </div>
         );
     }
