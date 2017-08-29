@@ -24,6 +24,9 @@ export default class Main extends React.Component {
 
         this.state = {
             user: {},
+            permissions: {
+                roles: {}
+            },
             login_screen: false,
             selected_page: '',
             modules: {},
@@ -37,15 +40,19 @@ export default class Main extends React.Component {
 
     async componentDidMount() {
         this.Auth.onAuthStateChange(async(user) => {
-            this.setState({user: user || {}});
+            let permissions = await this.Database.Get(`permissions/${user.uid}`);
+            console.log(permissions.roles);
+            this.setState({user: user || {}, permissions: permissions.val()});
             console.log("USER!");
         });
 
-        await this.Auth.getRedirectResult((result) => {
+        await this.Auth.getRedirectResult(async(result) => {
             let user = result.user;
             if (user) {
-                this.setState({user: user});
-                console.log("USER!");
+                let permissions = await this.Database.Get(`permissions/${user.uid}`);
+                console.log(permissions);
+                this.setState({user: user || {}, permissions: permissions});
+                console.log("USER! redirect");
             }
         });
     }
@@ -58,6 +65,7 @@ export default class Main extends React.Component {
                     signOut={this.signOut}
                     setPage={this.setPage}
                     user={this.state.user}
+                    permissions={this.state.permissions}
                     tabs={[
                         {href: "home", label: "Home"},
                         {href: "enroute", label: "Enroute"}
@@ -70,28 +78,32 @@ export default class Main extends React.Component {
                 <Route exact path={`${this.props.match.url}home`} component={Home}/>
 
 
-                <Route path={`${this.props.match.url}atc/basics`} component={(props) => <Basics Database={this.Database} {...props} />} />
-                <Route exact path={`${this.props.match.url}atc`} component={(props) => <Basics Database={this.Database} {...props}/>} />
+                <Route path={`${this.props.match.url}atc/basics`} component={(props) => <Basics Database={this.Database}
+                                                                                                permissions={this.state.permissions} {...props} />}/>
+                <Route exact path={`${this.props.match.url}atc`} component={(props) => <Basics Database={this.Database}
+                                                                                               permissions={this.state.permissions} {...props}/>}/>
+
+                <Route exact path={`${this.props.match.url}login`} component={Login}/>
 
                 {/*<Route exact path={`${this.props.match.url}stripe`} component={props => {*/}
-                    {/*console.log("render stripe route");*/}
-                    {/*return <StripeClass Database={this.Database}*/}
-                                        {/*user={this.state.user}*/}
-                                        {/*{...props}*/}
-                    {/*/>*/}
+                {/*console.log("render stripe route");*/}
+                {/*return <StripeClass Database={this.Database}*/}
+                {/*user={this.state.user}*/}
+                {/*{...props}*/}
+                {/*/>*/}
                 {/*}}/>*/}
 
                 {/*<Route exact path={`${this.props.match.url}enroute`} component={props => {*/}
-                    {/*return <Enroute Database={this.Database}*/}
-                                    {/*user={this.state.user}*/}
-                                    {/*{...props}*/}
-                    {/*/>*/}
+                {/*return <Enroute Database={this.Database}*/}
+                {/*user={this.state.user}*/}
+                {/*{...props}*/}
+                {/*/>*/}
                 {/*}}/>*/}
 
                 {/*<Route path={`${this.props.match.url}enroute/:module`} component={props => {*/}
-                    {/*return <Study Database={this.Database}*/}
-                                  {/*user={this.state.user}*/}
-                                  {/*{...props} />*/}
+                {/*return <Study Database={this.Database}*/}
+                {/*user={this.state.user}*/}
+                {/*{...props} />*/}
                 {/*}}/>*/}
             </div>
         );

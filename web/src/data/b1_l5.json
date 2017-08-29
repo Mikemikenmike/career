@@ -1,0 +1,115 @@
+{
+  "1c": {
+    "question": "The ATC system prevents a collision between aircraft operating in the system by applying separation between: ",
+    "answer": "Aircraft and protected airspace",
+    "choices": [
+      "Aircraft and protected airspace",
+      "Man made obstructrions on the ground",
+      "Mountains",
+      "Thunderstorms"
+    ],
+    "page": "3",
+    "type": "multiple_choice"
+  },
+  "2c": {
+    "question": "Define 'Separation'",
+    "answer": "In air traffic control, the spacing of aircraft to achieve their safe and orderly movement in flight and while landing and taking off.",
+    "choices": [
+      "In air traffic control, the spacing of aircraft to achieve their safe and orderly movement in flight and while landing and taking off.",
+      "The minimum longitudinal, lateral, or vertical distances by which aircraft are spaced through the application of air traffic control procedures.",
+      "Separation between aircraft expressed in units of vertical distance.",
+      "The fix, point, or location to which an aircraft is cleared when issued an air traffic clearance."
+    ],
+    "page": "3",
+    "type": "multiple_choice"
+  },
+  "3c": {
+    "question": "In what ways can aircraft be separated in BOTH radar and non-radar environments?",
+    "answer": ["Vertically", "Laterally", "Longitudinally"],
+    "choices": ["Vertically", "Laterally", "Longitudinally", "Visually", "Radar"],
+    "page": "4",
+    "type": "multiple_select"
+  },
+  "4c": {
+    "question": "Define 'Separation Minima'",
+    "answer": "The minimum longitudinal, lateral, or vertical distances by which aircraft are spaced through the application of air traffic control procedures.",
+    "choices": [
+      "In air traffic control, the spacing of aircraft to achieve their safe and orderly movement in flight and while landing and taking off.",
+      "The minimum longitudinal, lateral, or vertical distances by which aircraft are spaced through the application of air traffic control procedures.",
+      "Separation between aircraft expressed in units of vertical distance.",
+      "The fix, point, or location to which an aircraft is cleared when issued an air traffic clearance."
+    ],
+    "page": "4",
+    "type": "multiple_choice"
+  },
+  "5c": {
+    "question": "Flight Level (FL): A level of constant atmospheric pressure related to a reference datum of how many inches of mercury?",
+    "answer": "29.92",
+    "choices": ["29.92", "28.82", "29.00", "29.29"],
+    "page": "5",
+    "type": "multiple_choice"
+  },
+  "6c": {
+    "question": "At what altitude and above are all aircraft required to use the same altimeter setting?",
+    "answer": "18,000 MSL",
+    "choices": ["18,000 MSL", "1,800 MSL", "18,000 AGL", "180,000 MSL"],
+    "page": "5",
+    "type": "multiple_choice"
+  },
+  "7c": {
+    "question": "Vertical separation minima are the same both Radar and Non-radar environments.",
+    "answer": true,
+    "choices": [true, false],
+    "page": "6",
+    "type": "multiple_choice"
+  },
+  "8c": {
+    "question": "The minimum vertical separation required for non-RVSM equipped aircraft operating between FL180 and FL290 is",
+    "answer": "1000ft",
+    "choices": ["1000ft", "2000ft", "4000ft", "5000ft"],
+    "page": "7",
+    "type": "multiple_choice"
+  },
+  "9c": {
+    "question": "Non-RVSM aircraft can be assigned an altitude between FL290 (inclusive) and FL410 as long as there is at least 2000ft of vertical separation.",
+    "answer": false,
+    "choices": [true, false],
+    "page": "8",
+    "type": "multiple_choice"
+  },
+  "10c": {
+    "question": "All aircraft involved in a formation flight in RVSM airspace must be RVSM approved.",
+    "answer": true,
+    "choices": [true, false],
+    "page": "8",
+    "type": "multiple_choice"
+  },
+  "11c": {
+    "question": "What type of separation consists of the spacing of aircraft at the same altitude by requiring operation on different routes or in different geographical locations?",
+    "answer": "Lateral",
+    "choices": ["Lateral", "Longitudinal", "Vertical", "Visual"],
+    "page": "10",
+    "type": "multiple_choice"
+  },
+  "12c": {
+    "question": "Clearning aircraft to fly on different airways/routes whose widths or protected airspace do not overlap is a form of:",
+    "answer": "Lateral Separation",
+    "choices": ["Lateral Separation", "Vertical Separation", "Longitudinal Separation", "Horizontal Separation", "Visual Separation"],
+    "page": "11",
+    "type": "multiple_choice"
+  },
+  "13c": {
+    "question": "Aircraft departing an airport with diverging headings of 30 degrees are considered laterally separated.",
+    "answer": false,
+    "choices": [true, false],
+    "page": "12",
+    "type": "multiple_choice"
+  },
+  "14c": {
+    "question": "What is the standard non-radar longitudinal separation?",
+    "answer": "10 minutes or 20 miles",
+    "choices": ["10 minutes or 20 miles", "10 minutes or 5 miles, below FL600", "10 minutes or 10 miles", "20 minutes or 10 miles"],
+    "page": "15",
+    "type": "multiple_choice"
+  }
+}

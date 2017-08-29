@@ -64,6 +64,25 @@ export default class Basics extends React.Component {
                                             </Link>
                                         </li>
                                     })}
+                                    {this.props.permissions.roles.admin &&
+                                    <li>
+                                        <a className="button has-text-centered" style={{margin: "0 12px"}}>
+                                        <span className="icon">
+                                          <i className="fa fa-plus"/>
+                                        </span>
+                                        </a>
+                                    </li>
+                                    }
+                                </ul>
+                                <hr/>
+                                <ul className="menu-list">
+                                    <li>
+                                        <a className="button has-text-centered">
+                                        <span className="icon">
+                                          <i className="fa fa-plus"/>
+                                        </span>
+                                        </a>
+                                    </li>
                                 </ul>
                             </aside>
                         </div>
@@ -88,6 +107,14 @@ const menu = [
     },
     {
         location: "4",
-        name: "04 - Air traffic Basics"
+        name: "04 - Airports"
+    },
+    {
+        location: "5",
+        "name": "05 - Separation"
+    },
+    {
+        location: "10",
+        name: "10 - Principles of Flight"
     }
 ];

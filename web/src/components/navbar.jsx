@@ -5,6 +5,11 @@ import {Link} from 'react-router-dom';
 export default class NavBar extends React.Component {
     constructor(props) {
         super(props);
+        console.log(props.user);
+    }
+
+    componentWillReceiveProps(nextProps) {
+        console.log(nextProps.user);
     }
 
     render() {
@@ -38,11 +43,15 @@ export default class NavBar extends React.Component {
                                 </Link>
                             </div>
                         </div>
+                        {/*{this.props.permissions.roles.admin && <Link className="navbar-item" to="secret">Add</Link>}*/}
                     </div>
                     <div className="navbar-end">
-                        <Link className="navbar-item" to="/signin">
-                            Sign In
-                        </Link>
+                        {$.isEmptyObject(this.props.user) ?
+                            <Link className="navbar-item" to="/login">
+                                Sign In
+                            </Link> :
+                            <div className="navbar-item">Welcome, {`${this.props.user.displayName.split(' ')[0]}`}</div>
+                        }
                     </div>
                 </div>
             </nav>

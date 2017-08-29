@@ -1,0 +1,40 @@
+{
+  "1d": {
+    "question": "An aircraft's primary source of life comes from: ",
+    "answer": "Pressure differential caused by Bernoulli's Principle",
+    "choices": [
+      "Pressure differential caused by Bernoulli's Principle",
+      "The striking of air on the underside of the airfoil",
+      "Newton's third law of motion",
+      "Increased thrust"
+    ],
+    "page": "4",
+    "type": "multiple_choice"
+  },
+  "2d": {
+    "question": "Which of the following is NOT a principle airfoil?",
+    "answer": "Fuselage",
+    "choices": ["Fuselage", "Wing", "Horizontal tail surfaces", "Propeller"],
+    "page": "7",
+    "type": "multiple_choice"
+  },
+  "3d": {
+    "question": "Parts of an airfoil include:",
+    "answer": ["Leading edge", "Trailing edge", "Chord line"],
+    "choices": ["Leading edge", "Trailing edge", "Chord line", "Ailerons", "Flaps", "Trim Tabs"],
+    "page": "8",
+    "type": "multiple_select"
+  },
+  "4d": {
+    "question": "Angle of attack is based on",
+    "answer": "The cord line and direction of air striking the airfoil",
+    "choices": [
+      "The cord line and direction of air striking the airfoil",
+      "The orientation of the chord line to the horizon",
+      "The lower camber and the direction of air striking the airfoil",
+      "The cord line and absolute wind direction"
+    ],
+    "page": "9",
+    "type": "multiple_choice"
+  }
+}

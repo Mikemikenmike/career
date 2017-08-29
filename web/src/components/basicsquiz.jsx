@@ -91,6 +91,7 @@ export default class BasicsQuiz extends React.Component {
         } while ($.inArray(rand_key, this.state.solved) >= 0 || rand_key == solved);
 
         this.state.current_id = rand_key;
+        this.state.questions[rand_key].choices = shuffleArray(this.state.questions[rand_key].choices);
         this.setState(this.state);
     }
 
