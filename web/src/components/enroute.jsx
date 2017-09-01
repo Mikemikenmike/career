@@ -1,6 +1,6 @@
 import React from "react";
-import Module from "./module.jsx";
-import Study from "./study.jsx";
+import Clearance from "./modules/clearance.jsx";
+
 import {
     BrowserRouter as Router,
     Route,
@@ -14,28 +14,27 @@ export default class Enroute extends React.Component {
             modules: {},
             user_modules: {}
         };
-        console.log("Enroute Constructed");
-        console.log(`${this.props.match.url}/:module`);
     }
 
 
-    async componentDidMount() {
-        let user_modules = await this.props.Database.Get(`permissions/${this.props.user.uid}/modules`);
-        let modules = await this.props.Database.Get(`modules`);
-        this.setState({modules: modules.val(), user_modules: user_modules.val()});
-    }
+    componentDidMount = () => {
+
+    };
 
     render() {
         return (
-            <div id={this.props.id} className="row">
-                {Object.entries(this.state.modules).map(([name, val], i) => {
-                    return <Module key={name + i}
-                                   name={name}
-                                   lock={!this.state.user_modules[name]}
-                                   description={val.description}
-                                   {...this.props}
-                    />
-                })}
+            <div id={this.props.id}>
+                <section className="hero is-primary" style={{marginBottom: 24}}>
+                    <div className="hero-body">
+                        <div className="container">
+                            <h1 className="title">
+                                Enroute
+                            </h1>
+                        </div>
+                    </div>
+                </section>
+
+                <Clearance />
             </div>
 
         );

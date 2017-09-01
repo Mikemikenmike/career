@@ -93,12 +93,12 @@ export default class Main extends React.Component {
                 {/*/>*/}
                 {/*}}/>*/}
 
-                {/*<Route exact path={`${this.props.match.url}enroute`} component={props => {*/}
-                {/*return <Enroute Database={this.Database}*/}
-                {/*user={this.state.user}*/}
-                {/*{...props}*/}
-                {/*/>*/}
-                {/*}}/>*/}
+                <Route exact path={`${this.props.match.url}atc/enroute`} component={props => {
+                return <Enroute Database={this.Database}
+                user={this.state.user}
+                {...props}
+                />
+                }}/>
 
                 {/*<Route path={`${this.props.match.url}enroute/:module`} component={props => {*/}
                 {/*return <Study Database={this.Database}*/}

@@ -18,6 +18,12 @@ export default class Basics extends React.Component {
         this.state = {active: active};
     }
 
+    componentDidMount = async () => {
+        let lessons = (await this.props.Database.Get('lesson')).val();
+        console.log(lessons);
+
+    };
+
     componentWillReceiveProps() {
         this.set_active();
 
@@ -66,7 +72,7 @@ export default class Basics extends React.Component {
                                     })}
                                     {this.props.permissions.roles.admin &&
                                     <li>
-                                        <a className="button has-text-centered" style={{margin: "0 12px"}}>
+                                        <a className="button has-text-centered" style={{margin: "24px 12px 0px 12px"}}>
                                         <span className="icon">
                                           <i className="fa fa-plus"/>
                                         </span>
@@ -75,6 +81,7 @@ export default class Basics extends React.Component {
                                     }
                                 </ul>
                                 <hr/>
+                                {this.props.permissions.roles.admin &&
                                 <ul className="menu-list">
                                     <li>
                                         <a className="button has-text-centered">
@@ -84,6 +91,7 @@ export default class Basics extends React.Component {
                                         </a>
                                     </li>
                                 </ul>
+                                }
                             </aside>
                         </div>
                         <div className="column">
@@ -106,15 +114,15 @@ const menu = [
         name: "02 - ATC System and NAS"
     },
     {
-        location: "4",
-        name: "04 - Airports"
+        "location": "4",
+        "name": "04 - Airports"
     },
     {
-        location: "5",
+        "location": "5",
         "name": "05 - Separation"
     },
     {
-        location: "10",
-        name: "10 - Principles of Flight"
+        "location": "10",
+        "name": "10 - Principles of Flight"
     }
 ];
